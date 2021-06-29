@@ -1,16 +1,11 @@
 <template>
-  <div></div>
-
-  <!-- <div class="container">
+  <div class="container">
     <div class="img" :style="`background-image: url('${url}');`"></div>
-    <div class="content"></div> -->
-  <!-- <h1>{{ title }} at {{ date }}</h1> -->
-  <!-- <div class="corps"> -->
-  <!-- <p class="description">{{ description }}</p> -->
-  <!-- </div> -->
-  <!-- </div> -->
-
-  <router-view></router-view>
+    <div class="content">
+      <h1>{{ title }} at {{ date }}</h1>
+      <p class="description">{{ description }}</p>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -20,18 +15,18 @@ export default {
 
   data() {
     return {
-      date: "-",
-      title: "-",
+      date: "",
+      title: "",
       url: "",
       description: "",
     };
   },
 
   mounted() {
-    const apiUrl =
-      "https://api.nasa.gov/planetary/apod?api_key=vANhpstA65mOYxlGFQaU8zYGyLlhSIsUdiVItnxT";
     axios
-      .get(apiUrl)
+      .get(
+        "https://api.nasa.gov/planetary/apod?api_key=vANhpstA65mOYxlGFQaU8zYGyLlhSIsUdiVItnxT"
+      )
       .then((res) => {
         // console.log("res", res);
         this.title = res.data.title;
@@ -46,33 +41,41 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="css">
+@import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap%27");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-.container {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
+body {
+  font-family: "Righteous", cursive;
+  font-size: 19px;
+  line-height: 1.7;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg%27%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23424242' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-color: #22223b;
 }
-.img {
-  position: absolute;
-  height: 100vh;
-  width: 100vw;
-  background-size: cover;
-  // background-position: center;
-  // background: no-repeat;
+.container {
+  display: flex;
+  padding: 40px;
+  margin: 0 auto;
+  max-height: 100%;
+}
+/* .content {
+  display: flex;
+} */
+h1 {
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #ff6b6b;
+}
+p {
+  color: #e2e2df;
 }
 
-.content {
-  position: absolute;
-  top: 50%;
-  left: 80px;
-  transform: translateY(-50%);
-  background-color: aliceblue;
-  width: 25%;
-  height: 70%;
+.img {
+  height: 510px;
+  width: 100%;
+  margin-right: 50px;
 }
 </style>
